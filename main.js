@@ -196,9 +196,5 @@ const routingEvent = () => {
   return getPosts();
 };
 
-window.onload = () => {
-  getPosts();
-  routingEvent();
-};
-
-window.onpopstate = routingEvent;
+window.addEventListener('popstate', routingEvent);
+window.addEventListener('load', routingEvent);
