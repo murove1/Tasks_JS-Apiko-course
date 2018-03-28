@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import styled from 'styled-components';
 
 import Header from './components/Header';
+import SearchInput from './components/SearchInput';
 import PostList from './components/PostList';
 import MoreButton from './components/MoreButton';
 import data from './data.json';
 
-const getPosts = (skip = 0, count) => data.slice(skip, skip + count);
+const LIMIT_COUNT = 10;
+
+const getPosts = (searchValue = '') =>
+  data.filter(post =>
+    post.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
 class App extends Component {
   constructor() {
@@ -14,38 +20,44 @@ class App extends Component {
 
     this.state = {
       posts: [],
-      limitLoadCount: 10
+      limitLoadCount: LIMIT_COUNT
     };
   }
 
   componentDidMount() {
-    this.handleGetPost();
+    const posts = getPosts();
+    this.setState({ posts });
   }
 
-  handleGetPost = () => {
-    const { posts, limitLoadCount } = this.state;
-    const newPosts = getPosts(posts.length, limitLoadCount);
+  handleSearch = searchValue => {
+    const posts = getPosts(searchValue);
 
-    this.setState({ posts: [...posts, ...newPosts] });
+    this.setState({ posts, limitLoadCount: LIMIT_COUNT });
   };
 
   handleLoadMore = () => {
-    this.handleGetPost();
+    this.setState({ limitLoadCount: this.state.limitLoadCount + 10 });
   };
 
   render() {
-    const { posts } = this.state;
+    const { posts, limitLoadCount } = this.state;
 
     return (
-      <div className="App">
+      <AppContainer>
         <Header postsCount={posts.length} />
-        <PostList posts={posts} />
-        {posts.length !== data.length && (
-          <MoreButton onClick={this.handleLoadMore}>Load more!</MoreButton>
-        )}
-      </div>
+        <SearchInput onSearch={this.handleSearch} />
+        <PostList posts={posts} limitLoadCount={limitLoadCount} />
+        {posts.length > limitLoadCount &&
+          posts.length !== limitLoadCount && (
+            <MoreButton onClick={this.handleLoadMore}>Load more!</MoreButton>
+          )}
+      </AppContainer>
     );
   }
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  text-align: center;
+`;
