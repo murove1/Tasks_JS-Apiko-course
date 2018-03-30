@@ -25,7 +25,8 @@ PostList.propTypes = {
       title: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  limitLoadCount: PropTypes.number.isRequired
 };
 
 export default PostList;
