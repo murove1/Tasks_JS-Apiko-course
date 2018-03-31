@@ -44,7 +44,6 @@ const Input = styled.input`
   border-radius: 4px;
   outline: none;
   transition: 0.3s;
-
   :focus {
     border-color: dodgerBlue;
     box-shadow: 0 0 8px 0 dodgerBlue;

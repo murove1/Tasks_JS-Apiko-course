@@ -4,19 +4,15 @@ import styled from 'styled-components';
 
 import PostListItem from './PostListItem';
 
-const PostList = ({ posts, limitLoadCount }) => {
-  return (
-    <PostContaner>
-      {posts.length ? (
-        posts
-          .slice(0, limitLoadCount)
-          .map(post => <PostListItem key={post.id} post={post} />)
-      ) : (
-        <InfoBlock>Posts no found!</InfoBlock>
-      )}
-    </PostContaner>
-  );
-};
+const PostList = ({ posts }) => (
+  <PostContaner>
+    {posts.length ? (
+      posts.map(post => <PostListItem key={post.id} post={post} />)
+    ) : (
+      <InfoBlock>Posts no found!</InfoBlock>
+    )}
+  </PostContaner>
+);
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(
@@ -25,8 +21,7 @@ PostList.propTypes = {
       title: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired
     })
-  ).isRequired,
-  limitLoadCount: PropTypes.number.isRequired
+  ).isRequired
 };
 
 export default PostList;

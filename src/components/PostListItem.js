@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const PostListItem = ({ post: { title, body } }) => (
-  <Post>
-    <Title>{title}</Title>
-    <Body>{body}</Body>
-  </Post>
-);
+class PostListItem extends Component {
+  shouldComponentUpdate = nextProps => {
+    console.log('shouldComponentUpdate');
+    console.log('this.props', this.props);
+    console.log('nextProps', nextProps);
+    if (
+      this.props.post.title === nextProps.post.title &&
+      this.props.post.body === nextProps.post.body
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  render() {
+    console.log('render ListItem');
+
+    const { post: { title, body } } = this.props;
+
+    return (
+      <Post>
+        <Title>{title}</Title>
+        <Body>{body}</Body>
+      </Post>
+    );
+  }
+}
 
 PostListItem.propTypes = {
   post: PropTypes.shape({
@@ -23,7 +44,6 @@ const Post = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
   padding: 10px;
-
   :last-child {
     margin-bottom: 0;
   }
