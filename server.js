@@ -22,9 +22,12 @@ const writeWeatherInFile = data => {
 
 getGeolocation(city, GEO_API_KEY)
   .then(data => {
-    const { lat, lng } = data.results[0].geometry.location;
-
-    return getWeather(lat, lng, WEATHER_API_KEY);
+    if (data.status !== 'OK') {
+      throw `Status: ${data.status}`;
+    } else {
+      const { lat, lng } = data.results[0].geometry.location;
+      return getWeather(lat, lng, WEATHER_API_KEY);
+    }
   })
   .then(data => {
     const { temperature, summary } = data.currently;
@@ -32,4 +35,5 @@ getGeolocation(city, GEO_API_KEY)
 
     console.log(temperatureInfo);
     writeWeatherInFile(temperatureInfo);
-  });
+  })
+  .catch(error => console.log(error));

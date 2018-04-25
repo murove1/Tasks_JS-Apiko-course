@@ -7,12 +7,7 @@ const getGeolocation = async (city, apiKey) => {
     );
     const data = await response.json();
 
-    if (data.status === 'OK') {
-      return data;
-    } else {
-      console.log(`Error fetching data. Status:${data.status}`);
-      return;
-    }
+    return data;
   } catch (error) {
     console.log(error);
   }
