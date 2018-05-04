@@ -9,8 +9,5 @@ export default SwitchNavigator(
     [screens.AuthorizedApplication]: { screen: AuthorizedApplication },
     [screens.UnauthorizedApplication]: { screen: UnauthorizedApplication },
   },
-  {
-    initialRouteName: screens.UnauthorizedApplication,
-    // initialRouteName: screens.AuthorizedApplication
-  },
+  { initialRouteName: screens.UnauthorizedApplication },
 );
