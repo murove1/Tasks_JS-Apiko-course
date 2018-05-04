@@ -1,12 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { HomeScreen } from './app/screens';
+import Navigation from './app/navigation';
 import store from './app/store';
 
 const App = () => (
   <Provider store={store}>
-    <HomeScreen />
+    <Navigation />
   </Provider>
 );
 
