@@ -10,6 +10,12 @@ const UserQuestionsScreenView = ({ navigation }) => (
     <Text style={styles.link} onPress={() => navigation.navigate(screens.UserQuestion)}>
       Go to Question page!
     </Text>
+    <Text style={styles.link} onPress={() => navigation.navigate(screens.AuthorizedApplication)}>
+      Authorization
+    </Text>
+    <Text style={styles.link} onPress={() => navigation.navigate(screens.UnauthorizedApplication)}>
+      SignOut
+    </Text>
   </View>
 );
 
