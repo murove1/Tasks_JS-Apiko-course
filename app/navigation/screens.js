@@ -10,5 +10,4 @@ export default {
   SignUp: 'SignUp',
   SignIn: 'SignIn',
   RestorePassword: 'RestorePassword',
-  SignOut: 'SignOut',
 };
