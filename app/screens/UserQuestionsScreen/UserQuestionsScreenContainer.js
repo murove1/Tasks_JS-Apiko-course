@@ -1,12 +1,11 @@
-import { connect } from 'react-redux';
-import { compose, hoistStatics } from 'recompose';
-
+import { compose, hoistStatics, withHandlers } from 'recompose';
 import UserQuestionsScreenView from './UserQuestionsScreenView';
+import { screens } from '../../navigation';
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-const enhancer = compose(connect(mapStateToProps, mapDispatchToProps));
+const enhancer = compose(
+  withHandlers({
+    navigateToUserQuestion: props => () => props.navigation.navigate(screens.UserQuestion),
+  }),
+);
 
 export default hoistStatics(enhancer)(UserQuestionsScreenView);

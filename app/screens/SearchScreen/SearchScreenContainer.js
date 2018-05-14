@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { compose, hoistStatics } from 'recompose';
-
 import SearchScreenView from './SearchScreenView';
 
 const mapStateToProps = state => ({});

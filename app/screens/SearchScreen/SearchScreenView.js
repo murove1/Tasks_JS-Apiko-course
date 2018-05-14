@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import T from 'prop-types';
-
-import styles from '../../styles';
+import { DrawerButton, OptionsButton, Logo } from '../../components';
 import { screens } from '../../navigation';
+import s from './styles';
+import { headerStyles } from '../../styles';
 
 const SearchScreenView = ({ navigation }) => (
-  <View style={styles.container}>
+  <View style={s.container}>
     <Text>Search page</Text>
-    <Text style={styles.link} onPress={() => navigation.navigate(screens.UserQuestion)}>
+    <Text onPress={() => navigation.navigate(screens.UserQuestion)}>
       Go to found question page!
     </Text>
   </View>
@@ -19,8 +20,10 @@ SearchScreenView.propTypes = {
 };
 
 SearchScreenView.navigationOptions = ({ navigation }) => ({
-  title: 'Search',
-  headerLeft: <Text onPress={() => navigation.navigate('DrawerToggle')}>Drawer</Text>,
+  headerTitle: <Logo header />,
+  headerLeft: <DrawerButton onPress={() => navigation.toggleDrawer()} />,
+  headerRight: <OptionsButton onPress={() => navigation.toggleDrawer()} />,
+  ...headerStyles,
 });
 
 export default SearchScreenView;

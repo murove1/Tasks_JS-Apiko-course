@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import T from 'prop-types';
-
-import styles from '../../styles';
+import { DrawerButton, Logo } from '../../components';
+import s from './styles';
+import { headerStyles } from '../../styles';
 
 const CreateQuestionScreenView = () => (
-  <View style={styles.container}>
+  <View style={s.container}>
     <Text>Create Question page</Text>
   </View>
 );
@@ -13,8 +14,10 @@ const CreateQuestionScreenView = () => (
 CreateQuestionScreenView.propTypes = {};
 
 CreateQuestionScreenView.navigationOptions = ({ navigation }) => ({
-  title: 'Create question',
-  headerLeft: <Text onPress={() => navigation.navigate('DrawerToggle')}>Drawer</Text>,
+  headerTitle: <Logo header />,
+  headerLeft: <DrawerButton onPress={() => navigation.toggleDrawer()} />,
+  headerRight: <Text onPress={() => navigation.toggleDrawer()}>Send</Text>,
+  ...headerStyles,
 });
 
 export default CreateQuestionScreenView;

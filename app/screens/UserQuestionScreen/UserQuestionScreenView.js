@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import T from 'prop-types';
-
-import styles from '../../styles';
+import { Logo } from '../../components';
+import s from './styles';
+import { headerStyles } from '../../styles';
 
 const UserQuestionScreenView = () => (
-  <View style={styles.container}>
+  <View style={s.container}>
     <Text>Hello world</Text>
   </View>
 );
@@ -13,7 +14,9 @@ const UserQuestionScreenView = () => (
 UserQuestionScreenView.propTypes = {};
 
 UserQuestionScreenView.navigationOptions = {
-  title: 'Question page',
+  headerTitle: <Logo header />,
+  headerRight: <View />,
+  ...headerStyles,
 };
 
 export default UserQuestionScreenView;

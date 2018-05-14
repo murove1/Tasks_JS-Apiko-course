@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { compose, hoistStatics } from 'recompose';
-
 import CreateQuestionScreenView from './CreateQuestionScreenView';
 
 const mapStateToProps = state => ({});
