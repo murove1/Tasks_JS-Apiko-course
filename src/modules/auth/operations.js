@@ -27,7 +27,6 @@ export const signIn = ({ email, password }) => async (dispatch) => {
 
     await AsyncStorage.setItem('token', res.data.token);
 
-    // TODO: add user to redux
     dispatch(actions.signInSuccess(res.data.user));
   } catch (err) {
     const { message } = err.response.data;
@@ -45,7 +44,6 @@ export const signOut = () => async (dispatch) => {
 
     await AsyncStorage.removeItem('token');
 
-    // TODO: delete user to redux
     dispatch(actions.signOutSuccess());
   } catch (err) {
     const { message } = err.response.data;
