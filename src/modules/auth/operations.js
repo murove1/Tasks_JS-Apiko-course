@@ -27,7 +27,7 @@ export const signIn = ({ email, password }) => async (dispatch) => {
 
     await AsyncStorage.setItem('token', res.data.token);
 
-    dispatch(actions.signInSuccess(res.data.user));
+    dispatch(actions.signInSuccess());
   } catch (err) {
     const { message } = err.response.data;
 
